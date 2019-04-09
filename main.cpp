@@ -1,15 +1,18 @@
-#include<stdio.h>
-/*
-hola mundo
-hola mundo
-*/
+#include <iostream>
+#include "PrimeNumber.h"
+using namespace std;
 
-int main(){ //funcion principal
-	
-	printf("Hola mundo :D\n");
-	return 0;
+int main() {
+
+    int n ;
+    cout << "Please enter number for which prime number to find : ";
+    cin >> n;
+
+    if(n <= 0) {
+        cout << "Invalid input" << endl;
+    }else {
+        cout << n << "th prime number is " << PrimeNumber(n) << endl;
+    }
+
+    return 0;
 }
-
-
-
-
