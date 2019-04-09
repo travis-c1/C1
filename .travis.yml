@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - '6'
+  - '8'
+  - '10'
+
+# Even though we support Node 6, we still want to use NPM 6
+install:
+  - npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; fi
+  - npm i -g yarn@latest
+  - npm ci
+
+# In your code, add this (after installing with `npm install --save-dev audit-ci`):
+# scripts:
+#   # This script should be the first that runs to reduce the risk of
+#   # executing a script from a compromised NPM package.
+#   - if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then audit-ci -m; fi
+
+# Keep the npm cache around to speed up installs
+cache:
+  directories:
+    - '$HOME/.npm'
+
+script:
+  # Have audit-ci run audit-ci to audit itself :)
+  - if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then node lib/audit-ci.js -l --config ./audit-ci.json; fi
+  - npm run lint
+  - npm run test
