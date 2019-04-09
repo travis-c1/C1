@@ -16,7 +16,6 @@ install:
 
 script: 
   # Build and run this project
-  - g++ main.cpp -std=c++17 -o travis_gcc_cpp17_cppcheck
-  - ./travis_gcc_cpp17_cppcheck
+  - g++ main.cpp -std=c++17 
   # cppcheck
   - cppcheck --quiet --error-exitcode=1
