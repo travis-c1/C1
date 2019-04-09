@@ -25,3 +25,6 @@ script:
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
   - ./test/basic_tests/runTests
+# Build and run this project
+  - g++ main.cpp -std=c++17 -o travis_gcc_cpp17_cppcheck
+  - ./travis_gcc_cpp17_cppcheck
